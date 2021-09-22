@@ -19,6 +19,30 @@ class Procesador(models.Model):
 
     def __str__(self):
         return self.nombre  # name to be shown when called
+    
+"""
+    class TarjetaDeVideo(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    fabricante = models.CharField(max_length=20)
+    gpu = models.CharField(max_length=20)
+    memoria = models.CharField(max_length=50)
+    bus = models.CharField(max_length=50)
+    frecuencias core  = models.CharField(max_length=20)
+    frecuencia memorias = models.CharField(max_length=100)
+    nucleo = models.CharField(max_length=20)
+    perfil = models.CharField(max_length=20)
+    refrigeracion = models.CharField(max_length=50)
+    slots = models.CharField(max_length=50)
+    largo = models.CharField(max_length=50)
+    iluminacion = models.CharField(max_length=50)
+    backplate = models.CharField(max_length=50)
+    conectoresdepoder = models.CharField(max_length=50)
+    puertosdevideo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre  # name to be shown when called
+"""
 
 class Build(models.Model):
     # usuario = models.ForeignKey(User,blank=True,null=True, on_delete=models.CASCADE)
