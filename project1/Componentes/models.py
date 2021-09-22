@@ -2,72 +2,38 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
+class abstractComponent(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre  # name to be shown when called
+
 # Create your models here.
-class Procesador(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    frecuencia = models.CharField(max_length=20)
-    frecuencia_turbo = models.CharField(max_length=20)
-    nucleo = models.CharField(max_length=50)
-    cache = models.CharField(max_length=50)
-    socket = models.CharField(max_length=20)
-    nucleo = models.CharField(max_length=100)
-    proceso = models.CharField(max_length=20)
-    tdp = models.CharField(max_length=20)
-    cooler = models.CharField(max_length=50)
-    graficos = models.CharField(max_length=50)
+class Procesador(abstractComponent):
+    pass
+    
+class TarjetaDeVideo(abstractComponent):
+    pass
 
-    def __str__(self):
-        return self.nombre  # name to be shown when called
     
-class TarjetaDeVideo(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
+class PlacaMadre(abstractComponent):
+    pass
+    
+class DiscoDuro(abstractComponent):
+    pass 
+    
+class RAM(abstractComponent):
+    pass
 
-    def __str__(self):
-        return self.nombre  # name to be shown when called
+class Gabinete(abstractComponent):
+    pass
     
-class PlacaMadre(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
+class FuenteDePoder(abstractComponent):
+    pass  
     
-    def __str__(self):
-        return self.nombre  # name to be shown when called
-    
-class DiscoDuro(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.nombre  # name to be shown when called    
-    
-class RAM(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.nombre  # name to be shown when called
-class Gabinete(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.nombre  # name to be shown when called
-    
-class FuenteDePoder(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.nombre  # name to be shown when called    
-    
-class CoolerCPU(models.Model):
-    nombre = models.CharField(max_length=100)
-    url = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.nombre  # name to be shown when called    
-    
+class CoolerCPU(abstractComponent):
+    pass   
     
 
 class Build(models.Model):
