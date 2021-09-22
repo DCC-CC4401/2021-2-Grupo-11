@@ -1,0 +1,20 @@
+[
+{
+    "model": "componentes.procesador",
+    "pk": 1,
+    "fields": {
+        "nombre": "Intel Pentium G3220",
+        "url": "https://www.solotodo.cl/products/13031-intel-pentium-g3220",
+        "frecuencia": "3000 MHz",
+        "frecuencia_turbo": "3000 MHz",
+        "nucleo": "2 núcleos / 2 hilos",
+        "cache": "2 x 256KB L2 / 3MB L3",
+        "socket": "LGA 1150",
+        "nucleo": "Intel Haswell (Haswell)",
+        "proceso": "22 nm",
+        "tdp": "54 W",
+        "cooler": "Cooler stock Intel",
+        "graficos": "HD Graphics"
+    }
+}
+]
