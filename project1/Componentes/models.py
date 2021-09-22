@@ -20,10 +20,11 @@ class Procesador(models.Model):
     def __str__(self):
         return self.nombre  # name to be shown when called
     
-"""
-    class TarjetaDeVideo(models.Model):
+class TarjetaDeVideo(models.Model):
     nombre = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
+    
+"""    
     fabricante = models.CharField(max_length=20)
     gpu = models.CharField(max_length=20)
     memoria = models.CharField(max_length=50)
@@ -39,10 +40,53 @@ class Procesador(models.Model):
     backplate = models.CharField(max_length=50)
     conectoresdepoder = models.CharField(max_length=50)
     puertosdevideo = models.CharField(max_length=50)
+"""
 
     def __str__(self):
         return self.nombre  # name to be shown when called
-"""
+    
+class PlacaMadre(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called
+    
+class DiscoDuro(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called    
+    
+class RAM(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called
+class Gabinete(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called
+    
+class FuenteDePoder(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called    
+    
+class CoolerCPU(models.Model):
+    nombre = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.nombre  # name to be shown when called    
+    
+    
 
 class Build(models.Model):
     # usuario = models.ForeignKey(User,blank=True,null=True, on_delete=models.CASCADE)
