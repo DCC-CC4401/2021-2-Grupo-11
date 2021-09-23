@@ -8,56 +8,56 @@ class Procesador(models.Model):
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class GPU(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class PlacaMadre(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class Almacenamiento(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class RAM(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 class Gabinete(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class FuentePoder(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
     
 class CoolerCPU(models.Model):
     name = models.CharField(max_length=100)
     url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 class Build(models.Model):
     usuario = models.ForeignKey(User,blank=True,null=True, on_delete=models.CASCADE)
