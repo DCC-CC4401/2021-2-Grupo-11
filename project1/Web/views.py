@@ -1,8 +1,9 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from Componentes.models import *
+from django.http import HttpResponseRedirect
 from django.contrib import messages
+
+from Componentes.models import *
 from Web.models import User
 
 def index(request):
@@ -10,7 +11,10 @@ def index(request):
 
 
 def register_build(request):
-    if request.method == 'GET':
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/login')
+
+    elif request.method == 'GET':
         procesador = Procesador.objects.all()
         tarjetavideo = GPU.objects.all()
         placamadre = PlacaMadre.objects.all()
@@ -25,9 +29,6 @@ def register_build(request):
         return render(request, "Web/register_build.html", componentes)
     
     elif request.method == 'POST':
-        if not request.user.is_authenticated:
-            return HttpResponseRedirect('/register')
-        
         if "buildAdd" in request.POST:
             name_procesador = request.POST["procesador"]
             name_tarjetavideo = request.POST["tarjetavideo"]
@@ -50,14 +51,15 @@ def register_build(request):
             build = Build(procesador= procesador, tarjetavideo= tarjetavideo, placamadre= placamadre,
                 disco0= disco0, memoria= memoria, gabinete= gabinete, fuente= fuente, cooler= cooler)
             build.save()
-            return redirect("/user")
+            return HttpResponseRedirect("/user")
 
 
 def page_user(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/login')
     
-    return render(request, "Web/page_user.html")
+    builds = Build.objects.filter(usuario=request.user)
+    return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
 
 def register_user(request):
