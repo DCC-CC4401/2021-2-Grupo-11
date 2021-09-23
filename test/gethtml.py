@@ -3,8 +3,6 @@ from lxml import etree
 import json
 import re
 
-#description = result.xpath('//div[@class="description-container"]')[0]
-
 modelo = "Componentes.CoolerCPU"
 lastpage = 8
 
@@ -20,7 +18,7 @@ def componentesLista(url, numpage):
             url_etree = result.xpath('//div[@class="price flex-grow"]//a')[i]
             url_p = url_etree.get("href")
             name = result.xpath('//a[@href="'+url_p+'"]/text()')[0]
-            product={"model": modelo, "pk": num, "fields":{"nombre":name, "url":"https://www.solotodo.cl"+url_p}}            
+            product={"model": modelo, "pk": num, "fields":{"name":name, "url":"https://www.solotodo.cl"+url_p}}            
             products.append(product)
             num +=1
 

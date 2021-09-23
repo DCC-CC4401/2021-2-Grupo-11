@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    name = models.CharField(max_length=30, default='uwu')
+    name = models.CharField(max_length=30, default='default')
 
     def __str__(self):
-        return self.nombre  # name to be shown when called
+        return self.name
