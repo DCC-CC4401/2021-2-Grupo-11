@@ -1,6 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 from Componentes.models import *
@@ -12,7 +11,7 @@ def index(request):
 
 def register_build(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/login')
+        return redirect('/login')
 
     elif request.method == 'GET':
         procesador = Procesador.objects.all()
@@ -51,12 +50,12 @@ def register_build(request):
             build = Build(procesador= procesador, tarjetavideo= tarjetavideo, placamadre= placamadre,
                 disco0= disco0, memoria= memoria, gabinete= gabinete, fuente= fuente, cooler= cooler)
             build.save()
-            return HttpResponseRedirect("/user")
+            return redirect("/user")
 
 
 def page_user(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('/login')
+        return redirect('/login')
     
     builds = Build.objects.filter(usuario=request.user)
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
@@ -73,7 +72,7 @@ def register_user(request):
         name = request.POST['name']
 
         user = User.objects.create_user(username=username, password=password, email=mail, name=name)
-        return HttpResponseRedirect('/')
+        return redirect('/')
 
 
 def login_user(request):
@@ -86,12 +85,12 @@ def login_user(request):
         usuario = authenticate(username=username,password=password)
         if usuario is not None:
             login(request, usuario)
-            return HttpResponseRedirect('/')
+            return redirect('/')
         else:
-            return HttpResponseRedirect('/register')
+            return redirect('/register')
 
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return redirect('/')
 
