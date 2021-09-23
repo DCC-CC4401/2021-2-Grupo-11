@@ -62,7 +62,10 @@ def page_user(request):
 
 
 def register_user(request):
-    if request.method == 'GET':
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    elif request.method == 'GET':
         return render(request,"web/register_user.html")
 
     elif request.method == 'POST':
@@ -76,6 +79,9 @@ def register_user(request):
 
 
 def login_user(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == 'GET':
         return render(request,"web/login_user.html")
 
