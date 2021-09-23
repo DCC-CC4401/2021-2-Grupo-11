@@ -1,18 +1,36 @@
 # Comandos para instalar django
 
-python -m venv env
-env\Scripts\activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+    python -m venv env
+    env\Scripts\activate
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
 
-# Comandos para correr django
+# Comandos para usar env
 
-python manage.py makemigrations <nombre_de_las_apps>
-python manage.py migrate
-python manage.py runserver
+    env\Scripts\activate
+    cd project1
 
 # Para crear un superusuario
 
-python manage.py createsuperuser
+    python manage.py createsuperuser  
 
-# Se puede entrar desde la url 127.0.0.1:8000/<app>
+# Para importar las bases de datos
+# Esto se hace solo la primera vez que se corre el server
+# A veces es necesario borrar db.sqlite3 y las carpetas migrations
+
+    python manage.py makemigrations Componentes Web
+    python manage.py migrate
+    python manage.py loaddata componentes/almacenamientos.json
+    python manage.py loaddata componentes/coolers.json
+    python manage.py loaddata componentes/fuentespoder.json
+    python manage.py loaddata componentes/gabinetes.json
+    python manage.py loaddata componentes/memorias.json
+    python manage.py loaddata componentes/placasmadre.json
+    python manage.py loaddata componentes/procesadores.json
+    python manage.py loaddata componentes/tarjetasvideo.json
+
+# Comandos para correr django
+
+    python manage.py makemigrations Componentes Web
+    python manage.py migrate
+    python manage.py runserver

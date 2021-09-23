@@ -3,9 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
 
-from django.contrib.auth.models import AbstractUser
-
-
 class User(AbstractUser):
     name = models.CharField(max_length=30, default='uwu')
 
