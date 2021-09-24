@@ -23,13 +23,19 @@
     python manage.py migrate
     python manage.py loaddata componentes/json/computer_cases.json
     python manage.py loaddata componentes/json/cpu_coolers.json
+    python manage.py loaddata componentes/json/gaming_chairs.json
+    python manage.py loaddata componentes/json/headphones.json
+    python manage.py loaddata componentes/json/keyboards.json
+    python manage.py loaddata componentes/json/monitors.json
     python manage.py loaddata componentes/json/motherboards.json
+    python manage.py loaddata componentes/json/mouse.json
     python manage.py loaddata componentes/json/power_supplies.json
     python manage.py loaddata componentes/json/processors.json
     python manage.py loaddata componentes/json/rams.json
     python manage.py loaddata componentes/json/solid_state_drives.json
     python manage.py loaddata componentes/json/storage_drives.json
     python manage.py loaddata componentes/json/video_cards.json
+    
 
 # Comandos para correr django
 
