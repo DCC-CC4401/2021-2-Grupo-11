@@ -1,1 +1,127 @@
-register_user
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V10</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'web/img/favicon.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/animsition.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/daterangepicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/main.css' %}">
+
+    <style>.font {font-family: monospace;}</style>
+        <style>
+            body{
+                background-color: #ebebff;;
+            }
+            .c1{
+                padding: 20px;
+                border-radius: 5px;
+            }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333333;
+        }
+
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 16px;
+          text-decoration: none;
+        }
+
+        li a:hover {
+          background-color: #111111;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="build">Armar Build</a></li>
+    <li><a href="">Mis Builds</a></li>
+</ul>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-t-50 p-b-90">
+                <form class="login100-form validate-form flex-sb flex-w c1" method="post">
+                    {% csrf_token %}
+                    <span class="login100-form-title p-b-51 font"> Crea tu Build</span>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                        <input class="input100" type="text" id="" name="GPU" placeholder="GPU">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Name is required">
+                        <input class="input100" type="text" id="" name="Procesador" placeholder="Procesador">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="PlacaMadre" placeholder="Placa Madre">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="RAM" placeholder="RAM">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="DiscoDuro" placeholder="Disco Duro">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="SDD" placeholder="SDD">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="Gabinete" placeholder="Gabinete">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="FuentePoder" placeholder="Fuente Poder">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                        <input class="input100" type="text" id="" name="CoolerCPU" placeholder="Cooler CPU">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-17">
+                        <button class="login100-form-btn font" type="submit"> Subir Build </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<div>
+<div id="dropDownSelect1"></div>
+
+{% load static %}
+<script src="{% static 'web/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'web/js/animsition.min.js' %}"></script>
+<script src="{% static 'web/js/popper.js' %}"></script>
+<script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'web/js/select2.min.js' %}"></script>
+<script src="{% static 'web/js/moment.min.js' %}"></script>
+<script src="{% static 'web/js/daterangepicker.js' %}"></script>
+<script src="{% static 'web/js/countdowntime.js' %}"></script>
+<script src="{% static 'web/js/main.js' %}"></script>
+</div>
+</body>
+</html>
