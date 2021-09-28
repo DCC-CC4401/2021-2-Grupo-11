@@ -1,0 +1,11 @@
+{% if componentes %}
+    <datalist id="{{ tipo }}">
+    {% for comp in componentes %}
+        <option value="{{ comp.name }}">
+    {% endfor %}
+    </datalist>
+{% else %}
+    <datalist id="{{ tipo }}">
+        <option value="No se encontraron resultados para tu búsqueda.">
+    </datalist>
+{% endif %}
