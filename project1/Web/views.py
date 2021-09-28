@@ -17,13 +17,12 @@ def register_build(request):
         procesador = Procesador.objects.all()
         tarjetavideo = GPU.objects.all()
         placamadre = PlacaMadre.objects.all()
-        disco0 = Almacenamiento.objects.all()
         memoria = RAM.objects.all()
         gabinete = Gabinete.objects.all()
         fuente = FuentePoder.objects.all()
         cooler = CoolerCPU.objects.all()
         componentes = {"procesador": procesador, "tarjetavideo": tarjetavideo, "placamadre": placamadre,
-            "disco0": disco0, "memoria": memoria, "gabinete": gabinete, "fuente": fuente, "cooler": cooler}
+                       "memoria": memoria, "gabinete": gabinete, "fuente": fuente, "cooler": cooler}
 
         return render(request, "Web/register_build.html", componentes)
     
