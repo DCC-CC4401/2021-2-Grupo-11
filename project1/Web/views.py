@@ -5,6 +5,7 @@ from django.contrib import messages
 from Componentes.models import *
 from Web.models import User
 
+
 def index(request):
     return render(request, "Web/index.html")
 
@@ -14,41 +15,32 @@ def register_build(request):
         return redirect('/login')
 
     elif request.method == 'GET':
-        procesador = Procesador.objects.all()
-        tarjetavideo = GPU.objects.all()
-        placamadre = PlacaMadre.objects.all()
-        disco0 = Almacenamiento.objects.all()
-        memoria = RAM.objects.all()
-        gabinete = Gabinete.objects.all()
-        fuente = FuentePoder.objects.all()
-        cooler = CoolerCPU.objects.all()
-        componentes = {"procesador": procesador, "tarjetavideo": tarjetavideo, "placamadre": placamadre,
-            "disco0": disco0, "memoria": memoria, "gabinete": gabinete, "fuente": fuente, "cooler": cooler}
-
-        return render(request, "Web/register_build.html", componentes)
+        return render(request, "Web/register_build.html")
     
     elif request.method == 'POST':
         if "buildAdd" in request.POST:
-            name_procesador = request.POST["procesador"]
             name_tarjetavideo = request.POST["tarjetavideo"]
+            name_procesador = request.POST["procesador"]
             name_placamadre = request.POST["placamadre"]
-            name_disco0 = request.POST["disco0"]
+            name_discohdd = request.POST["discohdd"]
+            name_discossd = request.POST["discossd"]
             name_memoria = request.POST["memoria"]
             name_gabinete = request.POST["gabinete"]
             name_fuente = request.POST["fuente"]
             name_cooler = request.POST["cooler"]
 
-            procesador = Procesador.objects.get(name= name_procesador)
             tarjetavideo = GPU.objects.get(name= name_tarjetavideo)
+            procesador = Procesador.objects.get(name= name_procesador)
             placamadre = PlacaMadre.objects.get(name= name_placamadre)
-            disco0 = Almacenamiento.objects.get(name= name_disco0)
             memoria = RAM.objects.get(name= name_memoria)
+            discohdd = DiscoDuro.objects.get(name= name_discohdd)
+            discossd = DiscoDuro.objects.get(name= name_discossd)
             gabinete = Gabinete.objects.get(name= name_gabinete)
             fuente = FuentePoder.objects.get(name= name_fuente)
             cooler = CoolerCPU.objects.get(name= name_cooler)
 
-            build = Build(procesador= procesador, tarjetavideo= tarjetavideo, placamadre= placamadre,
-                disco0= disco0, memoria= memoria, gabinete= gabinete, fuente= fuente, cooler= cooler)
+            build = Build(procesador= procesador, tarjetavideo= tarjetavideo, placamadre= placamadre, discohdd= discohdd,
+                discossd= discossd, memoria= memoria, gabinete= gabinete, fuente= fuente, cooler= cooler)
             build.save()
             return redirect("/user")
 
