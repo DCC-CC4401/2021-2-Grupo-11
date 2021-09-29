@@ -1,6 +1,6 @@
 const delay_by_in_ms = 500
 let scheduled_function = false
-const endpoint = '/ajax'
+const endpoint = '/ajax/comps'
 
 function get_ajax(campo, input, list) {
 

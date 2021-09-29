@@ -1,0 +1,14 @@
+{% if componentes %}
+{% for comps in componentes %}
+    {{ comps.name }}
+    {{ comps.url }}
+    {{ comps.precio }}
+    {{ comps.cat0 }} {{ comps.des0 }}
+    {{ comps.cat1 }} {{ comps.des1 }}
+    {{ comps.cat2 }} {{ comps.des2 }}
+    {{ comps.cat3 }} {{ comps.des3 }}
+    {{ comps.cat4 }} {{ comps.des4 }}
+{% endfor %}
+{% else %}
+<option value="No se encontraron resultados">
+{% endif %}

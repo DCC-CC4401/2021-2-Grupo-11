@@ -1,0 +1,7 @@
+{% if componentes %}
+{% for comps in componentes %}
+<option value="{{ comps.name }}">
+{% endfor %}
+{% else %}
+<option value="No se encontraron resultados">
+{% endif %}

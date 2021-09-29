@@ -1,0 +1,17 @@
+{% if builds %}
+{% for build in builds %}
+    {{ build.name }}
+    {{ build.usuario }}
+    {{ build.tarjetavideo }}
+    {{ build.procesador }}
+    {{ build.placamadre }}
+    {{ build.memoria }}
+    {{ build.discohdd }}
+    {{ build.discossd }}
+    {{ build.gabinete }}
+    {{ build.fuente }}
+    {{ build.cooler }}
+{% endfor %}
+{% else %}
+<option value="No se encontraron resultados">
+{% endif %}

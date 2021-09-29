@@ -7,7 +7,8 @@ from Web.models import User
 
 
 def index(request):
-    return render(request, "Web/index.html", {"user": request.user})
+    builds = Build.objects.all().order_by('-date')[:20]
+    return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
 
 def register_build(request):
@@ -41,7 +42,7 @@ def register_build(request):
             cooler = CoolerCPU.objects.get(name= name_cooler) if name_cooler != "" else None
 
             build = Build(name=nombre, usuario=request.user, procesador=procesador, tarjetavideo=tarjetavideo, placamadre=placamadre,
-                discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler)
+                            discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler)
             build.save()
             return redirect("/user")
 

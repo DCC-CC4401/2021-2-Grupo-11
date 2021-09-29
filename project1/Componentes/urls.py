@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('ajax',views.componentes_ajax, name='ajax'),
+    path('comps',views.componentes_ajax, name='componentes'),
+    path('build',views.componentes_ajax, name='builds'),
     
 ]
