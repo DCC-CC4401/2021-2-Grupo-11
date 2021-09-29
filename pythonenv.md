@@ -11,10 +11,6 @@
     env\Scripts\activate
     cd project1
 
-# Para crear un superusuario
-
-    python manage.py createsuperuser
-
 # Para importar las bases de datos
 # Antes es necesario borrar el archivo db.sqlite3 y las carpetas migrations
 # Esto se hace solo la primera vez que se corre el server
@@ -35,7 +31,12 @@
     python manage.py loaddata componentes/json/solid_state_drives.json
     python manage.py loaddata componentes/json/storage_drives.json
     python manage.py loaddata componentes/json/video_cards.json
-    
+    python manage.py createsuperuser
+    python manage.py runserver
+
+# Para crear un superusuario
+
+    python manage.py createsuperuser
 
 # Comandos para correr django
 

@@ -1,1 +1,53 @@
-page_user
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>user</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'web/img/favicon.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/animsition.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/daterangepicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/css/main.css' %}">
+
+    <script src="{% static 'web/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'web/js/animsition.min.js' %}"></script>
+    <script src="{% static 'web/js/popper.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'web/js/select2.min.js' %}"></script>
+    <script src="{% static 'web/js/moment.min.js' %}"></script>
+    <script src="{% static 'web/js/daterangepicker.js' %}"></script>
+    <script src="{% static 'web/js/countdowntime.js' %}"></script>
+    <script src="{% static 'web/js/main.js' %}"></script>
+    
+</head>
+<body>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="build">Armar Build</a></li>
+        <li><a href="user">Mis Builds</a></li>
+        <li style="float: right;"><a href="logout">Cerrar Sesión</a></li>
+        <li style="float: right;"><a href="user">{{ user }}</a></li>
+    </ul>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-t-50 p-b-90">
+
+            </div>
+        </div>
+    </div>
+<div id="dropDownSelect1"></div>
+
+</div>
+</body>
+</html>

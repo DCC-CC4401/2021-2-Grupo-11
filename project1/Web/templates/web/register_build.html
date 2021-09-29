@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V10</title>
+    <title>build</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, follow">
@@ -20,108 +20,110 @@
     <link rel="stylesheet" type="text/css" href="{% static 'web/css/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'web/css/main.css' %}">
 
-    <style>.font {font-family: monospace;}</style>
-        <style>
-            body{
-                background-color: #ebebff;;
-            }
-            .c1{
-                padding: 20px;
-                border-radius: 5px;
-            }
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #333333;
-        }
+    <script src="{% static 'web/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'web/js/animsition.min.js' %}"></script>
+    <script src="{% static 'web/js/popper.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'web/js/select2.min.js' %}"></script>
+    <script src="{% static 'web/js/moment.min.js' %}"></script>
+    <script src="{% static 'web/js/daterangepicker.js' %}"></script>
+    <script src="{% static 'web/js/countdowntime.js' %}"></script>
+    <script src="{% static 'web/js/main.js' %}"></script>
+    <script src="{% static 'web/js/componentes.js' %}"></script>
 
-        li {
-          float: left;
-        }
-
-        li a {
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 16px;
-          text-decoration: none;
-        }
-
-        li a:hover {
-          background-color: #111111;
-        }
-    </style>
 </head>
 <body>
-<ul>
-    <li><a href="build">Armar Build</a></li>
-    <li><a href="">Mis Builds</a></li>
-</ul>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="build">Armar Build</a></li>
+        <li><a href="user">Mis Builds</a></li>
+        <li style="float: right;"><a href="logout">Cerrar Sesión</a></li>
+        <li style="float: right;"><a href="user">{{ user }}</a></li>
+    </ul>
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
                 <form class="login100-form validate-form flex-sb flex-w c1" method="post">
                     {% csrf_token %}
                     <span class="login100-form-title p-b-51 font"> Crea tu Build</span>
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="La build necesita un nombre">
+                        <input class="input100" type="text" name="nombre" placeholder="Nombre de la Build" required>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <span class="p-b-51 font">Al ingresar algún texto se actualizará la lista de componentes (Se muestran máximo 20 a la vez)</span>
                     <div class="wrap-input100 validate-input m-b-16">
-                        <input class="input100" type="text" id="" name="GPU" placeholder="GPU" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="gpus" id="gpu" name="tarjetavideo" placeholder="GPU"
+                            onkeyup="get_ajax('GPU','#gpu','#gpus')">
+                        <datalist id="gpus">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="Procesador" placeholder="Procesador" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="procesadores" id="procesador" name="procesador" placeholder="Procesador"
+                            onkeyup="get_ajax('Procesador','#procesador','#procesadores')" required>
+                        <datalist id="procesadores">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="PlacaMadre" placeholder="Placa Madre" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="placasmadre" id="placamadre" name="placamadre" placeholder="Placa Madre"
+                            onkeyup="get_ajax('PlacaMadre','#placamadre','#placasmadre')" required>
+                        <datalist id="placasmadre">
+                            <option value="Busca tu elemento">
+                        </datalist>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        <input class="input100" list="discos" id="disco" name="discohdd" placeholder="Disco Duro"
+                            onkeyup="get_ajax('DiscoDuro','#disco','#discos')">
+                        <datalist id="discos">
+                            <option value="Busca tu elemento">
+                        </datalist>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-16" >
+                        <input class="input100" list="ssds" id="ssd" name="discossd" placeholder="SSD"
+                            onkeyup="get_ajax('SSD','#ssd','#ssds')">
+                        <datalist id="ssds">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16">
-                        <input class="input100" type="text" id="" name="RAM" placeholder="RAM" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="rams" id="ram" name="memoria" placeholder="RAM"
+                            onkeyup="get_ajax('RAM','#ram','#rams')" required>
+                        <datalist id="rams">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="DiscoDuro" placeholder="Disco Duro" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="gabinetes" id="gabinete" name="gabinete" placeholder="Gabinetes"
+                            onkeyup="get_ajax('Gabinete','#gabinete','#gabinetes')" required>
+                        <datalist id="gabinetes">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="SDD" placeholder="SDD" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="fuentes" id="fuente" name="fuente" placeholder="Fuente de Poder"
+                            onkeyup="get_ajax('FuentePoder','#fuente','#fuentes')" required>
+                        <datalist id="fuentes">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
                     <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="Gabinete" placeholder="Gabinete" required>
-                        <span class="focus-input100"></span>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="FuentePoder" placeholder="Fuente Poder" required>
-                        <span class="focus-input100"></span>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
-                        <input class="input100" type="text" id="" name="CoolerCPU" placeholder="Cooler CPU" required>
-                        <span class="focus-input100"></span>
+                        <input class="input100" list="coolers" id="cooler" name="cooler" placeholder="Cooler CPU"
+                            onkeyup="get_ajax('CoolerCPU','#cooler','#coolers')">
+                        <datalist id="coolers">
+                            <option value="Busca tu elemento">
+                        </datalist>
                     </div>
 
                     <div class="container-login100-form-btn m-t-17">
-                        <button class="login100-form-btn font" type="submit"> Subir Build </button>
+                        <button class="login100-form-btn font" name="buildAdd" type="submit"> Subir Build </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-<div>
 <div id="dropDownSelect1"></div>
 
-{% load static %}
-<script src="{% static 'web/js/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'web/js/animsition.min.js' %}"></script>
-<script src="{% static 'web/js/popper.js' %}"></script>
-<script src="{% static 'web/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'web/js/select2.min.js' %}"></script>
-<script src="{% static 'web/js/moment.min.js' %}"></script>
-<script src="{% static 'web/js/daterangepicker.js' %}"></script>
-<script src="{% static 'web/js/countdowntime.js' %}"></script>
-<script src="{% static 'web/js/main.js' %}"></script>
 </div>
 </body>
 </html>

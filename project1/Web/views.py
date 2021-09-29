@@ -7,7 +7,7 @@ from Web.models import User
 
 
 def index(request):
-    return render(request, "Web/index.html")
+    return render(request, "Web/index.html", {"user": request.user})
 
 
 def register_build(request):
@@ -15,10 +15,11 @@ def register_build(request):
         return redirect('/login')
 
     elif request.method == 'GET':
-        return render(request, "Web/register_build.html")
+        return render(request, "Web/register_build.html", {"user": request.user})
     
     elif request.method == 'POST':
         if "buildAdd" in request.POST:
+            nombre = request.POST["nombre"]
             name_tarjetavideo = request.POST["tarjetavideo"]
             name_procesador = request.POST["procesador"]
             name_placamadre = request.POST["placamadre"]
@@ -29,18 +30,18 @@ def register_build(request):
             name_fuente = request.POST["fuente"]
             name_cooler = request.POST["cooler"]
 
-            tarjetavideo = GPU.objects.get(name= name_tarjetavideo)
+            tarjetavideo = GPU.objects.get(name= name_tarjetavideo) if name_tarjetavideo != "" else None
             procesador = Procesador.objects.get(name= name_procesador)
             placamadre = PlacaMadre.objects.get(name= name_placamadre)
             memoria = RAM.objects.get(name= name_memoria)
-            discohdd = DiscoDuro.objects.get(name= name_discohdd)
-            discossd = DiscoDuro.objects.get(name= name_discossd)
+            discohdd = DiscoDuro.objects.get(name= name_discohdd) if name_discohdd != "" else None
+            discossd = SSD.objects.get(name= name_discossd) if name_discossd != "" else None
             gabinete = Gabinete.objects.get(name= name_gabinete)
             fuente = FuentePoder.objects.get(name= name_fuente)
-            cooler = CoolerCPU.objects.get(name= name_cooler)
+            cooler = CoolerCPU.objects.get(name= name_cooler) if name_cooler != "" else None
 
-            build = Build(procesador= procesador, tarjetavideo= tarjetavideo, placamadre= placamadre, discohdd= discohdd,
-                discossd= discossd, memoria= memoria, gabinete= gabinete, fuente= fuente, cooler= cooler)
+            build = Build(name=nombre, usuario=request.user, procesador=procesador, tarjetavideo=tarjetavideo, placamadre=placamadre,
+                discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler)
             build.save()
             return redirect("/user")
 

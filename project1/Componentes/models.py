@@ -259,17 +259,17 @@ class SillaGamer(models.Model):
 
 class Build(models.Model):
     name = models.CharField(max_length=100)
-    usuario = models.ForeignKey(User,blank=True,null=True, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     creacion = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
-    tarjetavideo = models.ForeignKey(GPU, blank=True, null=True, on_delete=models.CASCADE)
+    tarjetavideo = models.ForeignKey(GPU, on_delete=models.CASCADE)
     procesador = models.ForeignKey(Procesador, on_delete=models.CASCADE)
     placamadre = models.ForeignKey(PlacaMadre, on_delete=models.CASCADE)
     memoria = models.ForeignKey(RAM, on_delete=models.CASCADE)
-    discohdd = models.ForeignKey(DiscoDuro, blank=True, null=True, on_delete=models.CASCADE)
-    discossd = models.ForeignKey(SSD, blank=True, null=True, on_delete=models.CASCADE)
+    discohdd = models.ForeignKey(DiscoDuro, on_delete=models.CASCADE)
+    discossd = models.ForeignKey(SSD, on_delete=models.CASCADE)
     gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE)
     fuente = models.ForeignKey(FuentePoder, on_delete=models.CASCADE)
-    cooler = models.ForeignKey(CoolerCPU, blank=True, null=True, on_delete=models.CASCADE)
+    cooler = models.ForeignKey(CoolerCPU, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -282,8 +282,8 @@ class Setup(models.Model):
     mouse = models.ForeignKey(Mouse, on_delete=models.CASCADE)
     teclado = models.ForeignKey(Teclado, on_delete=models.CASCADE)
     monitor = models.ForeignKey(Monitor, on_delete=models.CASCADE)
-    audifono = models.ForeignKey(Audifonos, blank=True, null=True, on_delete=models.CASCADE)
-    sillagamer = models.ForeignKey(SillaGamer, blank=True, null=True, on_delete=models.CASCADE)
+    audifono = models.ForeignKey(Audifonos, on_delete=models.CASCADE)
+    sillagamer = models.ForeignKey(SillaGamer, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
