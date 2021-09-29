@@ -7,7 +7,7 @@ from Web.models import User
 
 
 def index(request):
-    builds = Build.objects.all().order_by('-date')[:20]
+    builds = Build.objects.all()[:20]
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
 
