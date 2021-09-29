@@ -34,10 +34,6 @@
     python manage.py createsuperuser
     python manage.py runserver
 
-# Para crear un superusuario
-
-    python manage.py createsuperuser
-
 # Comandos para correr django
 
     python manage.py makemigrations Componentes Web
