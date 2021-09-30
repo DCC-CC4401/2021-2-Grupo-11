@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>build</title>
-    {% include "web/imports.html" %}
+    {% include "web/base.html" %}
 
 </head>
 <body>
@@ -10,79 +10,79 @@
         <li><a href="/">Inicio</a></li>
         <li><a href="build">Armar Build</a></li>
         <li><a href="user">Mis Builds</a></li>
-        <li style="float: right;"><a href="logout">Cerrar Sesión</a></li>
-        <li style="float: right;"><a href="user">{{ user }}</a></li>
+        <li style="float:right;"><a href="logout">Cerrar Sesión</a></li>
+        <li style="float:right;"><a href="user">{{ user }}</a></li>
     </ul>
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100 p-t-50 p-b-90">
-                <form class="login100-form validate-form flex-sb flex-w c1" method="post">
+            <div class="wrap-form100 p-t-50 p-b-25">
+                <form class="login100-form flex-sb flex-w c1" method="post">
                     {% csrf_token %}
                     <span class="login100-form-title p-b-51 font"> Crea tu Build</span>
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="La build necesita un nombre">
+                    <div class="wrap-input100 m-b-16">
                         <input class="input100" type="text" name="nombre" placeholder="Nombre de la Build" required>
                         <span class="focus-input100"></span>
                     </div>
-                    <span class="p-b-51 font">Al ingresar algún texto se actualizará la lista de componentes (Se muestran máximo 20 a la vez)</span>
-                    <div class="wrap-input100 validate-input m-b-16">
+                    <span class="p-b-51 font">Al ingresar texto se actualizará la lista de componentes (Se muestran de 20)</span>
+                    <div class="wrap-input100 m-b-16">
                         <input class="input100" list="gpus" id="gpu" name="tarjetavideo" placeholder="GPU"
-                            onkeyup="get_ajax('GPU','#gpu','#gpus')">
+                            onkeyup="get_comps('GPU','#gpu','#gpus')">
                         <datalist id="gpus">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="procesadores" id="procesador" name="procesador" placeholder="Procesador"
-                            onkeyup="get_ajax('Procesador','#procesador','#procesadores')" required>
+                            onkeyup="get_comps('Procesador','#procesador','#procesadores')" required>
                         <datalist id="procesadores">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="placasmadre" id="placamadre" name="placamadre" placeholder="Placa Madre"
-                            onkeyup="get_ajax('PlacaMadre','#placamadre','#placasmadre')" required>
+                            onkeyup="get_comps('PlacaMadre','#placamadre','#placasmadre')" required>
                         <datalist id="placasmadre">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="discos" id="disco" name="discohdd" placeholder="Disco Duro"
-                            onkeyup="get_ajax('DiscoDuro','#disco','#discos')">
+                            onkeyup="get_comps('DiscoDuro','#disco','#discos')">
                         <datalist id="discos">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="ssds" id="ssd" name="discossd" placeholder="SSD"
-                            onkeyup="get_ajax('SSD','#ssd','#ssds')">
+                            onkeyup="get_comps('SSD','#ssd','#ssds')">
                         <datalist id="ssds">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16">
+                    <div class="wrap-input100 m-b-16">
                         <input class="input100" list="rams" id="ram" name="memoria" placeholder="RAM"
-                            onkeyup="get_ajax('RAM','#ram','#rams')" required>
+                            onkeyup="get_comps('RAM','#ram','#rams')" required>
                         <datalist id="rams">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="gabinetes" id="gabinete" name="gabinete" placeholder="Gabinetes"
-                            onkeyup="get_ajax('Gabinete','#gabinete','#gabinetes')" required>
+                            onkeyup="get_comps('Gabinete','#gabinete','#gabinetes')" required>
                         <datalist id="gabinetes">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="fuentes" id="fuente" name="fuente" placeholder="Fuente de Poder"
-                            onkeyup="get_ajax('FuentePoder','#fuente','#fuentes')" required>
+                            onkeyup="get_comps('FuentePoder','#fuente','#fuentes')" required>
                         <datalist id="fuentes">
                             <option value="Busca tu elemento">
                         </datalist>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-16" >
+                    <div class="wrap-input100 m-b-16" >
                         <input class="input100" list="coolers" id="cooler" name="cooler" placeholder="Cooler CPU"
-                            onkeyup="get_ajax('CoolerCPU','#cooler','#coolers')">
+                            onkeyup="get_comps('CoolerCPU','#cooler','#coolers')">
                         <datalist id="coolers">
                             <option value="Busca tu elemento">
                         </datalist>
@@ -97,6 +97,5 @@
     </div>
 <div id="dropDownSelect1"></div>
 
-</div>
 </body>
 </html>

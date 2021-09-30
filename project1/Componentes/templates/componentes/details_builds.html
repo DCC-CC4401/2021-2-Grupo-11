@@ -1,24 +1,21 @@
 {% if builds %}
-{% for build in builds %}    
-<h3>{{ build.name }}</h3>
+{% for build in builds %}
+<div class="w3-third c1">
+<div class="w3-card w3-container c1" style="min-height:460px">
+<h2>{{ build.name }}</h2>
 <h5>Por {{ build.usuario }}</h4><br>
-{% if build.tarjetavideo %}
 <p>Gráfica: {{ build.tarjetavideo }}</p>
-{% endif %}
 <p>Procesador: {{ build.procesador }}</p>
 <p>Placa Madre: {{ build.placamadre }}</p>
 <p>Memoria: {{ build.memoria }}</p>
-{% if build.discohdd %}
 <p>Disco: {{ build.discohdd }}</p>
-{% endif %}
-{% if build.discossd %}
 <p>SSD: {{ build.discossd }}</p>
-{% endif %}
 <p>Gabinete: {{ build.gabinete }}</p>
 <p>Fuente: {{ build.fuente }}</p>
-{% if build.cooler %}
-<p>Cooler: {{ build.cooler }}</p>
-{% endif %}
+<p>Cooler: {{ build.cooler }}</p><br>
+<a href="/delete?n={{ build.name }}">Eliminar build</a>
+</div>
+</div>
 {% endfor %}
 {% else %}
 <option value="No se encontraron resultados">

@@ -28,7 +28,7 @@ def componentes_ajax(request):
         componentes = getattr(sys.modules[__name__], url_comp).objects.all()[:20]
     
     html = render_to_string(url, context={"componentes":componentes})
-    data_dict = {"html_componentes": html}
+    data_dict = {"html_response": html}
 
     return JsonResponse(data=data_dict, safe=False)
 
@@ -37,8 +37,8 @@ def build_ajax(request):
     #if not request.is_ajax():
     #    return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
     
-    url_page = request.GET.get("p")
     url_user = request.GET.get("u")
+    url_page = request.GET.get("p")
 
     if not url_page:
         page = 0
@@ -46,10 +46,11 @@ def build_ajax(request):
         page = url_page * 20
 
     if url_user:
-        usuario = User.objects.filter(name__icontains=url_user)
-        builds = Build.objects.filter(usuario__icontains=usuario).order_by('-date')[page:page+20]
+        builds = Build.objects.filter(usuario=request.user).order_by('-creacion')[int(page):int(page)+20]
     else:
-        builds = Build.objects.all().order_by('-date')[page:page+20]
+        builds = Build.objects.all()[int(page):int(page)+20]
 
-    html = render_to_string("componentes/details_builds.html", context={"builds":builds})
-    data_dict = {"html_builds": html}
+    html = render_to_string("componentes/details_builds.html", context={"user":request.user, "builds":builds})
+    data_dict = {"html_response": html}
+    
+    return JsonResponse(data=data_dict, safe=False)

@@ -11,6 +11,16 @@ def index(request):
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
 
+def delete_build(request):
+    url_name = request.GET.get("n")
+    build = Build.objects.filter(usuario=request.user, name=url_name)
+
+    if build:
+        build.delete()
+
+    return redirect('/user')
+
+
 def register_build(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -93,4 +103,3 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
-

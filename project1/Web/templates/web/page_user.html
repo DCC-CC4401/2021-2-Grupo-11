@@ -2,25 +2,42 @@
 <html lang="es">
 <head>
     <title>user</title>
-    {% include "web/imports.html" %}
+    {% include "web/base.html" %}
 </head>
 <body>
     <ul>
         <li><a href="/">Inicio</a></li>
         <li><a href="build">Armar Build</a></li>
         <li><a href="user">Mis Builds</a></li>
-        <li style="float: right;"><a href="logout">Cerrar Sesión</a></li>
-        <li style="float: right;"><a href="user">{{ user }}</a></li>
+        <li style="float:right;"><a href="logout">Cerrar Sesión</a></li>
+        <li style="float:right;"><a href="user">{{ user }}</a></li>
     </ul>
     <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100 p-t-50 p-b-90">
-
+        <div class="wrap-main100 p-t-50 p-b-80">
+            <div class="w3-row-padding w3-center w3-margin-top">
+                <span class="login100-form-title p-b-51"> Tus builds </span>
+                <div id="builds">
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1" style="min-height:460px">
+                            <span> Cargando builds </span>
+                        </div>
+                    </div>
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1" style="min-height:460px">
+                            <span> Cargando builds </span>
+                        </div>
+                    </div>
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1" style="min-height:460px">
+                            <span> Cargando builds </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 <div id="dropDownSelect1"></div>
 
-</div>
+<script>get_user(0, '#builds')</script>
 </body>
 </html>
