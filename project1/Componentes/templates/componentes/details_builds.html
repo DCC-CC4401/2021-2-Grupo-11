@@ -1,16 +1,24 @@
 {% if builds %}
-{% for build in builds %}
-    {{ build.name }}
-    {{ build.usuario }}
-    {{ build.tarjetavideo }}
-    {{ build.procesador }}
-    {{ build.placamadre }}
-    {{ build.memoria }}
-    {{ build.discohdd }}
-    {{ build.discossd }}
-    {{ build.gabinete }}
-    {{ build.fuente }}
-    {{ build.cooler }}
+{% for build in builds %}    
+<h3>{{ build.name }}</h3>
+<h5>Por {{ build.usuario }}</h4><br>
+{% if build.tarjetavideo %}
+<p>Gráfica: {{ build.tarjetavideo }}</p>
+{% endif %}
+<p>Procesador: {{ build.procesador }}</p>
+<p>Placa Madre: {{ build.placamadre }}</p>
+<p>Memoria: {{ build.memoria }}</p>
+{% if build.discohdd %}
+<p>Disco: {{ build.discohdd }}</p>
+{% endif %}
+{% if build.discossd %}
+<p>SSD: {{ build.discossd }}</p>
+{% endif %}
+<p>Gabinete: {{ build.gabinete }}</p>
+<p>Fuente: {{ build.fuente }}</p>
+{% if build.cooler %}
+<p>Cooler: {{ build.cooler }}</p>
+{% endif %}
 {% endfor %}
 {% else %}
 <option value="No se encontraron resultados">

@@ -1,13 +1,14 @@
 {% if componentes %}
 {% for comps in componentes %}
-    {{ comps.name }}
-    {{ comps.url }}
-    {{ comps.precio }}
-    {{ comps.cat0 }} {{ comps.des0 }}
-    {{ comps.cat1 }} {{ comps.des1 }}
-    {{ comps.cat2 }} {{ comps.des2 }}
-    {{ comps.cat3 }} {{ comps.des3 }}
-    {{ comps.cat4 }} {{ comps.des4 }}
+<h3>{{ comps.name }}</h3>
+<h5>Precio: {{ comps.precio }}</h4><br>
+<p>{{ comps.cat0 }}: {{ comps.des0 }}</p>
+<p>{{ comps.cat1 }}: {{ comps.des1 }}</p>
+<p>{{ comps.cat2 }}: {{ comps.des2 }}</p>
+<p>{{ comps.cat3 }}: {{ comps.des3 }}</p>
+{% if comps.des4 %}
+<p>{{ comps.cat4 }}: {{ comps.des4 }}</p>
+{% endif %}
 {% endfor %}
 {% else %}
 <option value="No se encontraron resultados">
