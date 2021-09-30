@@ -14,7 +14,10 @@ def componentes_ajax(request):
     url_name = request.GET.get("n")
     url_mode = request.GET.get("m")
 
-    if not url_comp:
+    allow = {"GPU","Procesador","PlacaMadre","RAM","DiscoDuro","SSD","Gabinete","FuentePoder",
+                "CoolerCPU","Mouse","Teclado","Monitor","Audifonos","SillaGamer"}
+
+    if not url_comp or not url_comp in allow:
         return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
     
     if url_mode:
