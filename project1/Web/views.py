@@ -6,11 +6,12 @@ from Componentes.models import *
 from Web.models import User
 
 
+# Muestra una página con las builds mas recientes sin filtro
 def index(request):
     builds = Build.objects.all()[:20]
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
-
+# Al ejecutarse, si la build es del usuario, esta se borra
 def delete_build(request):
     url_name = request.GET.get("n")
     build = Build.objects.filter(usuario=request.user, name=url_name)
@@ -20,7 +21,7 @@ def delete_build(request):
 
     return redirect('/user')
 
-
+# Aqui se recibe el formulario de registro de builds y se inserta en la db
 def register_build(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -56,7 +57,7 @@ def register_build(request):
             build.save()
             return redirect("/user")
 
-
+# Muestra las builds del usuario
 def page_user(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -64,7 +65,7 @@ def page_user(request):
     builds = Build.objects.filter(usuario=request.user)
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
-
+# Muestra la pagina de registro
 def register_user(request):
     if request.user.is_authenticated:
         return redirect('user')
@@ -81,7 +82,7 @@ def register_user(request):
         user = User.objects.create_user(username=username, password=password, email=mail, name=name)
         return redirect('/')
 
-
+# Muestra la pagina de login
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('user')
@@ -99,7 +100,7 @@ def login_user(request):
         else:
             return redirect('/register')
 
-
+# Cierra la sesion del usuario
 def logout_user(request):
     logout(request)
     return redirect('/')
