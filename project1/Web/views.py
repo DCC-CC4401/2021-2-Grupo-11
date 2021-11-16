@@ -65,6 +65,12 @@ def page_user(request):
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
 
+def build_page(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+
+    return render(request, "Web/build_page.html")
+
 def register_user(request):
     if request.user.is_authenticated:
         return redirect('user')
