@@ -5,7 +5,11 @@ import sys
 
 from Componentes.models import *
 
-
+# Consulta de la base de datos los componentes segun algunos filtros
+# Retorna un html que se puede insertar directamente en la página
+# c : Tipo de componente (segun el nombre del modelo)
+# n : nombre del componente
+# m : si es true, devuelve los datos avanzados. Si es false solo devuelve el nombre
 def componentes_ajax(request):
     if not request.user.is_authenticated or not request.is_ajax():
         return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
@@ -14,7 +18,10 @@ def componentes_ajax(request):
     url_name = request.GET.get("n")
     url_mode = request.GET.get("m")
 
-    if not url_comp:
+    allow = {"GPU","Procesador","PlacaMadre","RAM","DiscoDuro","SSD","Gabinete","FuentePoder",
+                "CoolerCPU","Mouse","Teclado","Monitor","Audifonos","SillaGamer"}
+
+    if not url_comp or not url_comp in allow:
         return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
     
     if url_mode:
@@ -32,10 +39,13 @@ def componentes_ajax(request):
 
     return JsonResponse(data=data_dict, safe=False)
 
-
+# Consulta de la base de datos las builds creadas segun algunos filtros
+# Retorna un html que se puede insertar directamente en la página
+# u : Nombre del usuario (verifica login)
+# p : Numero de página
 def build_ajax(request):
-    #if not request.is_ajax():
-    #    return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
+    if not request.is_ajax():
+        return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
     
     url_user = request.GET.get("u")
     url_page = request.GET.get("p")

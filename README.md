@@ -91,7 +91,7 @@ Lorem ipsum dolor sit amet
     ```sh
     python manage.py makemigrations Componentes Web
     python manage.py migrate
-    python manage.py runserver
+    
     ```
 
 

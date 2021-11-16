@@ -3,14 +3,16 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from Componentes.models import *
-from Web.models import User
+from Web.models import *
 
 
+
+# Muestra una página con las builds mas recientes sin filtro
 def index(request):
     builds = Build.objects.all()[:20]
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
-
+# Al ejecutarse, si la build es del usuario, esta se borra
 def delete_build(request):
     url_name = request.GET.get("n")
     build = Build.objects.filter(usuario=request.user, name=url_name)
@@ -20,7 +22,7 @@ def delete_build(request):
 
     return redirect('/user')
 
-
+# Aqui se recibe el formulario de registro de builds y se inserta en la db
 def register_build(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -56,7 +58,38 @@ def register_build(request):
             build.save()
             return redirect("/user")
 
+'''
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(label ="", widget = forms.Textarea(
+    attrs ={
+        'class':'form-control',
+        'placeholder':'Comment here !',
+        'rows':4,
+        'cols':50
+    }))
+    class Meta:
+        model = Comment
+        fields =['content']
 
+'''
+
+def post_detailview(request, id):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+
+    elif request.method == 'GET':
+        return render(request, "Web/register_comment.html", {"user": request.user})
+
+    elif request.method == 'POST':
+        if "commentAdd" in request.POST:
+            build_id = request.POST["build_id"]
+            usuario = request.user
+            text_field = request.POST["text_field"]
+
+            comentario = CommentForm(build_id=build_id, user=usuario, content=text_field)
+
+
+# Muestra las builds del usuario
 def page_user(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -64,6 +97,7 @@ def page_user(request):
     builds = Build.objects.filter(usuario=request.user)
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
+<<<<<<< HEAD
 
 def build_page(request):
     if not request.user.is_authenticated:
@@ -71,6 +105,9 @@ def build_page(request):
 
     return render(request, "Web/build_page.html")
 
+=======
+# Muestra la pagina de registro
+>>>>>>> 46013534d29d45c11b3d22fbe76ddbee55286196
 def register_user(request):
     if request.user.is_authenticated:
         return redirect('user')
@@ -87,7 +124,7 @@ def register_user(request):
         user = User.objects.create_user(username=username, password=password, email=mail, name=name)
         return redirect('/')
 
-
+# Muestra la pagina de login
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('user')
@@ -105,7 +142,7 @@ def login_user(request):
         else:
             return redirect('/register')
 
-
+# Cierra la sesion del usuario
 def logout_user(request):
     logout(request)
     return redirect('/')
