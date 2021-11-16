@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from Componentes.models import *
-from Web.models import User
+from Web.models import *
+
 
 
 # Muestra una página con las builds mas recientes sin filtro
@@ -56,6 +57,37 @@ def register_build(request):
                             discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler)
             build.save()
             return redirect("/user")
+
+'''
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(label ="", widget = forms.Textarea(
+    attrs ={
+        'class':'form-control',
+        'placeholder':'Comment here !',
+        'rows':4,
+        'cols':50
+    }))
+    class Meta:
+        model = Comment
+        fields =['content']
+
+'''
+
+def post_detailview(request, id):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+
+    elif request.method == 'GET':
+        return render(request, "Web/register_comment.html", {"user": request.user})
+
+    elif request.method == 'POST':
+        if "commentAdd" in request.POST:
+            build_id = request.POST["build_id"]
+            usuario = request.user
+            text_field = request.POST["text_field"]
+
+            comentario = CommentForm(build_id=build_id, user=usuario, content=text_field)
+
 
 # Muestra las builds del usuario
 def page_user(request):
