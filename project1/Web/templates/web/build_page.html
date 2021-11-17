@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        /* Split the screen in half */
+    .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    /* Control the left side */
+    .left {
+      left: 0;
+    }
+
+    /* Control the right side */
+    .right {
+      right: 0;
+    }
+
+    /* If you want the content centered horizontally and vertically */
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* Style the image inside the centered container, if needed */
+    .centered img {
+      width: 150px;
+      border-radius: 50%;
+    }
+    </style>
     <title>build</title>
     {% include "web/base.html" %}
 
@@ -13,21 +50,41 @@
         <li style="float:right;"><a href="logout">Cerrar Sesión</a></li>
         <li style="float:right;"><a href="user">{{ user }}</a></li>
     </ul>
+<div class="split left">
+  <div class="centered">
+              <div class="wrap-form100 p-t-50 p-b-25" style="margin-top: 10%;height: 550px" >
+SOY LA INFO DE UNA BUILD
+              </div>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered" style=" margin-top: 10%">
     <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-form100 p-t-50 p-b-25">
-                <form class="login100-form flex-sb flex-w c1" method="post">
+        <div class="container-login100" style="display:block;" >
+            <div class="wrap-form100 p-t-50 p-b-25" style="padding-top: 0px;padding-bottom: 0px;margin: 20px">
+                <form class="login100-form flex-sb flex-w c1" style="padding-top: 0px" method="post">
                     {% csrf_token %}
-                    <span class="login100-form-title p-b-51 font"> Ingresar comentario</span>
+                    <span class="login100-form-title p-b-51 font" style="font-size: medium; padding: 10px"> Ingresar comentario</span>
                     <div class="wrap-input100 m-b-16">
-                        <input class="input100" type="text" name="contenido" placeholder="Escribe tu comentario..." required>
+                        <textarea class="input100" type="text" style="font-size: small; height: 100px; text-align: left; padding: 10px" name="contenido" placeholder="Escribe tu comentario..." required></textarea>
                         <span class="focus-input100"></span>
                     </div>
-                    <div class="container-login100-form-btn m-t-17">
-                        <button class="login100-form-btn font" name="buildAdd" type="submit">Enviar Comentario</button>
+                    <div class="container-login100-form-btn m-t-17" >
+                        <button class="login100-form-btn font" style="font-size: medium; height: 30px;width: 300px" name="buildAdd" type="submit">Enviar Comentario</button>
                     </div>
                 </form>
+            </div>
+            <div class="wrap-form100 p-t-50 p-b-25" style="padding-top: 0px;padding-bottom: 0px;font-size: medium;height: 300px;margin: 20px">
+                holaoalaoaladdadfodofssdfsdfsad
+            </div>
+        </div>
+    </div>
 <div id="dropDownSelect1"></div>
+  </div>
+</div>
+
+
 
 
 </body>
