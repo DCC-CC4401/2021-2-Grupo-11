@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('comps',views.componentes_ajax, name='componentes'),
     path('build',views.build_ajax, name='builds'),
+    path('search',views.search_ajax, name='search'),
     
 ]
