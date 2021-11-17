@@ -12,6 +12,12 @@ def index(request):
     builds = Build.objects.all()[:20]
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
+def build_page(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+
+    return render(request, "Web/build_page.html")
+
 # Al ejecutarse, si la build es del usuario, esta se borra
 def delete_build(request):
     url_name = request.GET.get("n")
@@ -97,17 +103,7 @@ def page_user(request):
     builds = Build.objects.filter(usuario=request.user)
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
-<<<<<<< HEAD
-
-def build_page(request):
-    if not request.user.is_authenticated:
-        return redirect('/login')
-
-    return render(request, "Web/build_page.html")
-
-=======
 # Muestra la pagina de registro
->>>>>>> 46013534d29d45c11b3d22fbe76ddbee55286196
 def register_user(request):
     if request.user.is_authenticated:
         return redirect('user')
