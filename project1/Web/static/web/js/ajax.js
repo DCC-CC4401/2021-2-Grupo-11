@@ -12,7 +12,11 @@ function get_abstract(path, dict, list) {
     }, delay_by_in_ms, path, dict)
 }
 
+let last_comp = ""
+
 function get_comps(comps, input, list) {
+    if ($(input).val() == last_comp)
+        return
     dict = {
         c: comps,
         n: $(input).val()
