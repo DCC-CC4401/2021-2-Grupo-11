@@ -6,27 +6,14 @@ from Componentes.models import *
 from Web.models import *
 
 
-
 # Muestra una página con las builds mas recientes sin filtro
 def index(request):
     builds = Build.objects.all()[:20]
     return render(request, "Web/index.html", {"user": request.user, "builds":builds})
 
-def build_page(request):
-    if not request.user.is_authenticated:
-        return redirect('/login')
-
-    return render(request, "Web/build_page.html")
-
-# Al ejecutarse, si la build es del usuario, esta se borra
-def delete_build(request):
-    url_name = request.GET.get("n")
-    build = Build.objects.filter(usuario=request.user, name=url_name)
-
-    if build:
-        build.delete()
-
-    return redirect('/user')
+# Muestra la página de busqueda de builds
+def search_build(request):
+    return render(request, "Web/search_build.html", {"user": request.user})
 
 # Aqui se recibe el formulario de registro de builds y se inserta en la db
 def register_build(request):
@@ -64,36 +51,58 @@ def register_build(request):
             build.save()
             return redirect("/user")
 
-'''
-class CommentForm(forms.ModelForm):
-    content = forms.CharField(label ="", widget = forms.Textarea(
-    attrs ={
-        'class':'form-control',
-        'placeholder':'Comment here !',
-        'rows':4,
-        'cols':50
-    }))
-    class Meta:
-        model = Comment
-        fields =['content']
-
-'''
-
-def post_detailview(request, id):
-    if not request.user.is_authenticated:
-        return redirect('/login')
+# Aqui se muestran las builds y se pueden agregar cometarios
+def details_build(request):
+    if Build.objects.all().count() == 0:
+        return redirect('/')
 
     elif request.method == 'GET':
-        return render(request, "Web/register_comment.html", {"user": request.user})
+        url_id = request.GET.get("n")
+
+        if not url_id:
+            url_id = Build.objects.first().id
+
+        build = Build.objects.filter(id=url_id)
+        comments = Comment.objects.filter(build_id=url_id).order_by('-fecha')
+
+        return render(request, "Web/build_page.html", {"user": request.user, "build": build[0], "comments": comments})
+
+    elif not request.user.is_authenticated:
+        return redirect('/login')
 
     elif request.method == 'POST':
         if "commentAdd" in request.POST:
-            build_id = request.POST["build_id"]
-            usuario = request.user
-            text_field = request.POST["text_field"]
+            build_id = request.POST["id"]
+            text_field = request.POST["text"]
 
-            comentario = CommentForm(build_id=build_id, user=usuario, content=text_field)
+            comentario = Comment(build_id=build_id, user=request.user, content=text_field)
+            comentario.save()
+            
+        return redirect("/details?n=" + request.POST["id"])
 
+# Al ejecutarse, si la build es del usuario, esta se borra
+def delete_build(request):
+    url_name = request.GET.get("n")
+    build = Build.objects.filter(usuario=request.user, name=url_name)
+
+    if build:
+        build.delete()
+
+    return redirect('/user')
+
+# Al ejecutarse, si el comentario es del usuario, esta se borra
+def delete_comment(request):
+    url_redirect = request.GET.get("id")
+    url_id = request.GET.get("n")
+    comment = Comment.objects.filter(user=request.user, id=url_id)
+
+    if comment:
+        comment.delete()
+
+    if url_redirect:
+        return redirect("/details?n=" + url_redirect)
+    else:
+        return redirect('/')
 
 # Muestra las builds del usuario
 def page_user(request):
@@ -102,6 +111,7 @@ def page_user(request):
     
     builds = Build.objects.filter(usuario=request.user)
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
+
 
 # Muestra la pagina de registro
 def register_user(request):

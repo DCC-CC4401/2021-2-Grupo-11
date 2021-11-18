@@ -2,7 +2,7 @@
 {% for build in builds %}
 <div class="w3-third c1">
 <div class="w3-card w3-container c1" style="min-height:460px">
-<h2>{{ build.name }}</h2>
+<a href="/details?n={{ build.id }}"><h2>{{ build.name }}</h2></a>
 <h5>Por {{ build.usuario }}</h4><br>
 <p>Gráfica: {{ build.tarjetavideo }}</p>
 <p>Procesador: {{ build.procesador }}</p>
@@ -13,7 +13,9 @@
 <p>Gabinete: {{ build.gabinete }}</p>
 <p>Fuente: {{ build.fuente }}</p>
 <p>Cooler: {{ build.cooler }}</p><br>
-<a href="/delete?n={{ build.name }}">Eliminar build</a>
+{% if build.usuario == user %}
+<a href="/delete_b?n={{ build.name }}">Eliminar build</a>
+{% endif %}
 </div>
 </div>
 {% endfor %}

@@ -258,6 +258,7 @@ class SillaGamer(models.Model):
 
 
 class Build(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     creacion = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
@@ -270,15 +271,13 @@ class Build(models.Model):
     gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE)
     fuente = models.ForeignKey(FuentePoder, on_delete=models.CASCADE)
     cooler = models.ForeignKey(CoolerCPU, blank=True, null=True, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
-
-
 
     def __str__(self):
         return self.name
 
 
 class Setup(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     usuario = models.ForeignKey(User,blank=True,null=True, on_delete=models.CASCADE)
     creacion = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))

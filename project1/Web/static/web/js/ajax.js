@@ -44,3 +44,16 @@ function get_user(page, list) {
     }
     get_abstract('/ajax/build', dict, list)
 }
+
+function build_search(page, list) {
+    form = document.forms['search']
+    dict = {
+        gpu: form['tarjetavideo'].value,
+        pro: form['procesador'].value,
+        pla: form['placamadre'].value,
+        n: form['name'].value,
+        u: form['user'].value,
+        p: page
+    }
+    get_abstract('/ajax/search', dict, list)
+}

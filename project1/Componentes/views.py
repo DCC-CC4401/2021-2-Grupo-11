@@ -66,13 +66,14 @@ def build_ajax(request):
     return JsonResponse(data=data_dict, safe=False)
 
 def search_ajax(request):
-    # if not request.is_ajax():
-    #   return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
+    if not request.is_ajax():
+        return JsonResponse(data={"html_componentes": "<option value='No se encontraron resultados'>"}, safe=False)
+
+    url_gpu = request.GET.get("gpu")
+    url_proc = request.GET.get("pro")
+    url_plac = request.GET.get("pla")
 
     url_name = request.GET.get("n")
-    url_placaM = request.GET.get("pm")
-    url_gpu = request.GET.get("gpu")
-    url_proce = request.GET.get("proce")
     url_user = request.GET.get("u")
     url_page = request.GET.get("p")
 
@@ -82,20 +83,19 @@ def search_ajax(request):
         page = url_page * 20
 
     builds = Build.objects.all().order_by('-creacion')
+    if url_gpu:
+        builds = builds.filter(tarjetavideo__icontains=url_gpu)
+    if url_proc:
+        builds = builds.filter(procesador__icontains=url_proc)
+    if url_plac:
+        builds = builds.filter(placamadre__icontains=url_plac)
     if url_name:
         builds = builds.filter(name__icontains=url_name)
-    if url_placaM:
-        builds_1 = PlacaMadre.objects.filter(name__icontains=url_placaM)
-        builds = builds.filter(placamadre=builds_1)
-    if url_gpu:
-        builds_2 = GPU.objects.filter(name__icontains=url_gpu)
-        builds = builds.filter(tarjetavideo=builds_2)
-    if url_proce:
-        builds_3 = Procesador.objects.filter(name__icontains=url_proce)
-        builds = builds.filter(procesador=builds_3)
-    if url_user:  # retorna builds del usuario
+    if url_user:
         builds = builds.filter(usuario=request.user)
+    builds = builds[int(page):int(page)+20]
 
     html = render_to_string("componentes/details_builds.html", context={"user": request.user, "builds": builds})
     data_dict = {"html_response": html}
 
+    return JsonResponse(data=data_dict, safe=False)

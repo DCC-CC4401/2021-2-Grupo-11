@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>search</title>
+    {% include "web/base.html" %}
+</head>
+<body>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="search">Buscar Build</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="build">Armar Build</a></li>
+            <li><a href="user">Mis Builds</a></li>
+            <li style="float:right;"><a href="logout">Cerrar Sesión</a></li>
+            <li style="float:right;"><a href="user">{{ user }}</a></li>
+        {% else %}
+            <li style="float:right;"><a href="login">Iniciar Sesión</a></li>
+            <li style="float:right;"><a href="register">Registrarse</a></li> 
+        {% endif %}
+    </ul>
+    <div class="limiter">
+        <div class="wrap-main100 p-t-20">
+            <div class="w3-row-padding w3-center w3-margin-top">
+                <span class="login100-form-title p-b-10"> Filtros </span>
+                <form class="login100-form flex-sb flex-w c1" name="search" style="padding-top: 0px">
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1">
+                            <div class="wrap-input100 m-b-16">
+                                <input class="input100" id="name" name="name" placeholder="Nombre">
+                            </div>
+                            <div class="wrap-input100 m-b-16">
+                                <input class="input100" id="user" name="user" placeholder="Usuario">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1">
+                            En desarrollo
+                        </div>
+                    </div>
+                    <div class="w3-third c1">
+                        <div class="w3-card w3-container c1">
+                            <div class="wrap-input100 m-b-16">
+                                <input class="input100" list="gpus" id="gpu" name="tarjetavideo" placeholder="GPU"
+                                    onkeyup="get_comps('GPU','#gpu','#gpus')">
+                                <datalist id="gpus">
+                                    <option value="Busca tu elemento">
+                                </datalist>
+                            </div>
+                            <div class="wrap-input100 m-b-16" >
+                                <input class="input100" list="procesadores" id="procesador" name="procesador" placeholder="Procesador"
+                                    onkeyup="get_comps('Procesador','#procesador','#procesadores')">
+                                <datalist id="procesadores">
+                                    <option value="Busca tu elemento">
+                                </datalist>
+                            </div>
+                            <div class="wrap-input100 m-b-16" >
+                                <input class="input100" list="placasmadre" id="placamadre" name="placamadre" placeholder="Placa Madre"
+                                    onkeyup="get_comps('PlacaMadre','#placamadre','#placasmadre')">
+                                <datalist id="placasmadre">
+                                    <option value="Busca tu elemento">
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn font" name="buildSearch" type="button" onclick="build_search(0, '#builds')"> Realizar búsqueda </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="limiter">
+        <div class="wrap-main100 p-t-20 p-b-80">
+            <div class="w3-row-padding w3-center w3-margin-top">
+                <span class="login100-form-title p-b-20"> Builds encontradas </span>
+                <div id="builds">
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="dropDownSelect1"></div>
+
+</body>
+</html>

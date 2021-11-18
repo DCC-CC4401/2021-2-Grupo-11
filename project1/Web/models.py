@@ -10,11 +10,12 @@ class User(AbstractUser):
     def __str__(self):
         return self.name
 
-
 class Comment(models.Model):
-  build_id = models.IntegerField()
-  user = models.ForeignKey(User, on_delete = models.CASCADE)
-  fecha = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
-  content = models.CharField(max_length=500)
+    id = models.AutoField(primary_key=True)
+    build_id = models.IntegerField()
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    fecha = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
+    content = models.CharField(max_length=500)
 
-
+    def __str__(self):
+        return self.content
