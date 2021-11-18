@@ -84,15 +84,15 @@ def search_ajax(request):
 
     builds = Build.objects.all().order_by('-creacion')
     if url_gpu:
-        builds = builds.filter(tarjetavideo__icontains=url_gpu)
+        builds = builds.filter(gpu__icontains=url_gpu)
     if url_proc:
-        builds = builds.filter(procesador__icontains=url_proc)
+        builds = builds.filter(proc__icontains=url_proc)
     if url_plac:
-        builds = builds.filter(placamadre__icontains=url_plac)
+        builds = builds.filter(plac__icontains=url_plac)
     if url_name:
         builds = builds.filter(name__icontains=url_name)
     if url_user:
-        builds = builds.filter(usuario=request.user)
+        builds = builds.filter(user__icontains=url_user)
     builds = builds[int(page):int(page)+20]
 
     html = render_to_string("componentes/details_builds.html", context={"user": request.user, "builds": builds})

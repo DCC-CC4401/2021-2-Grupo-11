@@ -271,6 +271,11 @@ class Build(models.Model):
     gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE)
     fuente = models.ForeignKey(FuentePoder, on_delete=models.CASCADE)
     cooler = models.ForeignKey(CoolerCPU, blank=True, null=True, on_delete=models.CASCADE)
+    # Para la búsqueda
+    gpu = models.CharField(max_length=100)
+    proc = models.CharField(max_length=100)
+    plac = models.CharField(max_length=100)
+    user = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name

@@ -47,7 +47,8 @@ def register_build(request):
             cooler = CoolerCPU.objects.get(name= name_cooler) if name_cooler != "" else None
 
             build = Build(name=nombre, usuario=request.user, procesador=procesador, tarjetavideo=tarjetavideo, placamadre=placamadre,
-                            discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler)
+                            discohdd=discohdd, discossd=discossd, memoria=memoria, gabinete=gabinete, fuente=fuente, cooler=cooler,
+                            gpu=name_tarjetavideo, proc=name_procesador, plac=name_placamadre, user=request.user.name)
             build.save()
             return redirect("/user")
 
