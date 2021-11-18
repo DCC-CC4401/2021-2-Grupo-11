@@ -19,15 +19,16 @@
         {% endif %}
     </ul>
     <div class="limiter">
-        <div class="wrap-main100 p-t-50 p-b-80">
+        <div class="wrap-main100 p-t-20">
             <div class="w3-row-padding w3-center w3-margin-top">
-                <span class="login100-form-title p-b-51"> Build detallada </span>
+                <span class="login100-form-title p-b-10"> Build detallada </span>
                 <div id="builds">
                     {% if build %}
                     <div class="w3-half c1">
                         <div class="w3-card w3-container c1" style="min-height:460px">
-                            <h2>{{ build.name }}</h2>
-                            <h5>Por {{ build.usuario }}</h4><br>
+                            <h2>{{ build.name }}</h2><br>
+                            <h5>Usuario: {{ build.usuario }}</h5>
+                            <h6>( {{ build.creacion }} )</h6><br>
                             <p>Gráfica: {{ build.tarjetavideo }}</p>
                             <p>Procesador: {{ build.procesador }}</p>
                             <p>Placa Madre: {{ build.placamadre }}</p>

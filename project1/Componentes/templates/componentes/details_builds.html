@@ -2,8 +2,9 @@
 {% for build in builds %}
 <div class="w3-third c1">
 <div class="w3-card w3-container c1" style="min-height:460px">
-<a href="/details?n={{ build.id }}"><h2>{{ build.name }}</h2></a>
-<h5>Por {{ build.usuario }}</h4><br>
+<a href="/details?n={{ build.id }}"><h2>{{ build.name }}</h2></a><br>
+<h5>Usuario: {{ build.usuario }}</h5>
+<h6>( {{ build.creacion }} )</h6><br>
 <p>Gráfica: {{ build.tarjetavideo }}</p>
 <p>Procesador: {{ build.procesador }}</p>
 <p>Placa Madre: {{ build.placamadre }}</p>

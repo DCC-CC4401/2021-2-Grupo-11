@@ -82,6 +82,9 @@ def details_build(request):
 
 # Al ejecutarse, si la build es del usuario, esta se borra
 def delete_build(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+    
     url_name = request.GET.get("n")
     build = Build.objects.filter(usuario=request.user, name=url_name)
 
@@ -92,6 +95,9 @@ def delete_build(request):
 
 # Al ejecutarse, si el comentario es del usuario, esta se borra
 def delete_comment(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+    
     url_redirect = request.GET.get("id")
     url_id = request.GET.get("n")
     comment = Comment.objects.filter(user=request.user, id=url_id)
@@ -109,7 +115,7 @@ def page_user(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     
-    builds = Build.objects.filter(usuario=request.user)
+    builds = Build.objects.filter(usuario=request.user).order_by('-fecha')
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
 

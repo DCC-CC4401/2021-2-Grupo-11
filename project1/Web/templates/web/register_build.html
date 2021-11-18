@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>build</title>
     {% include "web/base.html" %}
-
 </head>
 <body>
     <ul>
@@ -16,15 +15,15 @@
     </ul>
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-form100 p-t-50 p-b-25">
+            <div class="wrap-form100 p-t-20">
                 <form class="login100-form flex-sb flex-w c1" method="post">
                     {% csrf_token %}
-                    <span class="login100-form-title p-b-51 font"> Crea tu Build</span>
+                    <span class="login100-form-title p-b-30 font"> Crea tu Build</span>
                     <div class="wrap-input100 m-b-16">
                         <input class="input100" type="text" name="nombre" placeholder="Nombre de la Build" required>
                         <span class="focus-input100"></span>
                     </div>
-                    <span class="p-b-51 font">Al ingresar texto se actualizará la lista de componentes (Se muestran de 20)</span>
+                    <span class="p-t-20 p-b-20 font">Al ingresar texto se actualizará la lista de componentes (Se muestran de 20)</span>
                     <div class="wrap-input100 m-b-16">
                         <input class="input100" list="gpus" id="gpu" name="tarjetavideo" placeholder="GPU"
                             onkeyup="get_comps('GPU','#gpu','#gpus')">
