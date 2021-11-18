@@ -30,9 +30,9 @@ def componentes_ajax(request):
         url = "componentes/search_componentes.html"
     
     if url_name:
-        componentes = getattr(sys.modules[__name__], url_comp).objects.filter(name__icontains=url_name).order_by('-creacion')[:20]
+        componentes = getattr(sys.modules[__name__], url_comp).objects.filter(name__icontains=url_name)[:20]
     else:
-        componentes = getattr(sys.modules[__name__], url_comp).objects.all().order_by('-creacion')[:20]
+        componentes = getattr(sys.modules[__name__], url_comp).objects.all()[:20]
     
     html = render_to_string(url, context={"componentes":componentes})
     data_dict = {"html_response": html}
