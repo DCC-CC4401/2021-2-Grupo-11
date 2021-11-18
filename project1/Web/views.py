@@ -115,7 +115,7 @@ def page_user(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     
-    builds = Build.objects.filter(usuario=request.user).order_by('-fecha')
+    builds = Build.objects.filter(usuario=request.user).order_by('-creacion')
     return render(request, "Web/page_user.html", {"user": request.user, "builds":builds})
 
 
