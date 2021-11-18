@@ -63,18 +63,20 @@
                                     </div>
                                 </form>
                             </div>
-                            {% if comments %}
-                            {% for comment in comments %}
-                            <div class="w3-card w3-container c1">
-                                <h5>{{ comment.user }}
-                                {% if comment.user == user %}
-                                <a href="/delete_c?n={{ comment.id }}&id={{ build.id }}">Eliminar</a>
+                            <div class="commentbox" style="height: 300px; overflow-y: scroll;">
+                                {% if comments %}
+                                {% for comment in comments %}
+                                <div class="w3-card w3-container c1" style="margin: 5px">
+                                    <div class="font" style="text-align: left; font-weight: bold ; background-color: #827FFE52; border-radius: 3px; padding: 3px">{{ comment.user }}
+                                    {% if comment.user == user %}
+                                    <a href="/delete_c?n={{ comment.id }}&id={{ build.id }}" style="margin-left: 10px; font-size: x-small">Eliminar</a>
+                                    {% endif %}
+                                    </div>
+                                    <p style="text-align: left;">{{ comment.content }}</p>
+                                </div>
+                                {% endfor %}
                                 {% endif %}
-                                </h5>
-                                <p>{{ comment.content }}</p>
                             </div>
-                            {% endfor %}
-                            {% endif %}
                         </div>
                     </div>
                 </div>
